@@ -17,9 +17,24 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
+        :root {
+            --primary-color: #6BAA75;
+            --primary-dark: #5a8f63;
+            --secondary-color: #E0B24C;
+            --secondary-dark: #c89c3a;
+            --accent-color: #A37C5B;
+            --accent-dark: #8a6546;
+            --light-bg: #F8F5F0;
+            --text-dark: #333333;
+            --text-light: #F8F5F0;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+        
         body {
-            background-color: #F8F5F0;
-            color: #333333;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
             line-height: 1.7;
             font-size: 17px;
             scroll-behavior: smooth;
@@ -49,8 +64,8 @@
         
         /* ===== HEADER ===== */
         header {
-            background-color: #6BAA75;
-            color: white;
+            background-color: var(--primary-color);
+            color: var(--white);
             padding: 20px 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: sticky;
@@ -68,11 +83,18 @@
         .logo {
             font-size: 32px;
             font-weight: 700;
-            color: #F8F5F0;
+            color: var(--light-bg);
+            display: flex;
+            align-items: center;
         }
         
         .logo span {
-            color: #E0B24C;
+            color: var(--secondary-color);
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 28px;
         }
         
         .search-bar {
@@ -88,44 +110,71 @@
             border-radius: 30px;
             border: none;
             font-size: 17px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .search-bar input:focus {
+            box-shadow: 0 0 0 2px var(--secondary-color);
         }
         
         .search-bar button {
             position: absolute;
             right: 6px;
             top: 6px;
-            background: #A37C5B;
-            color: white;
+            background: var(--accent-color);
+            color: var(--white);
             border-radius: 50%;
             width: 40px;
             height: 40px;
-            transition: background-color 0.3s;
+            transition: var(--transition);
         }
         
         .search-bar button:hover {
-            background: #8a6546;
+            background: var(--accent-dark);
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 20px;
         }
         
         .user-actions a {
-            margin-left: 20px;
-            color: white;
+            color: var(--white);
             font-size: 16px;
-            transition: color 0.3s;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            position: relative;
         }
         
         .user-actions a:hover {
-            color: #E0B24C;
+            color: var(--secondary-color);
         }
         
         .user-actions i {
             margin-right: 8px;
         }
         
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
         .main-nav {
             display: flex;
             justify-content: space-between;
-            background-color: #5a8f63;
+            background-color: var(--primary-dark);
             border-radius: 8px;
             padding: 0 20px;
         }
@@ -134,12 +183,12 @@
             padding: 15px 18px;
             display: inline-block;
             font-size: 17px;
-            transition: background-color 0.3s;
+            transition: var(--transition);
         }
         
         .main-nav a:hover {
-            background-color: #4a7a52;
-            color: #E0B24C;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--secondary-color);
         }
         
         /* ===== BANNER PRINCIPAL ===== */
@@ -148,33 +197,47 @@
                         url('https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80');
             background-size: cover;
             background-position: center;
-            color: white;
+            color: var(--white);
             text-align: center;
             padding: 100px 20px;
             margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .banner::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(transparent, var(--light-bg));
         }
         
         .banner h1 {
             font-size: 42px;
             margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
         
         .banner p {
             font-size: 22px;
             max-width: 800px;
             margin: 0 auto 30px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
         
         /* ===== BOTÕES COM EFEITO LIQUIDGLASS ===== */
         .btn {
             display: inline-block;
-            background-color: #E0B24C;
-            color: white;
+            background-color: var(--secondary-color);
+            color: var(--white);
             padding: 15px 30px;
             border-radius: 30px;
             font-weight: 600;
             font-size: 18px;
-            transition: all 0.3s;
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(224, 178, 76, 0.3);
@@ -192,7 +255,7 @@
         }
         
         .btn:hover {
-            background-color: #c89c3a;
+            background-color: var(--secondary-dark);
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(224, 178, 76, 0.4);
         }
@@ -213,6 +276,14 @@
             transition: transform 0.5s ease;
             gap: 20px;
             padding: 10px 0;
+            scroll-behavior: smooth;
+            overflow-x: auto;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        
+        .carousel::-webkit-scrollbar {
+            display: none; /* Chrome, Safari and Opera */
         }
         
         .carousel-item {
@@ -224,7 +295,7 @@
             top: 50%;
             transform: translateY(-50%);
             background-color: rgba(107, 170, 117, 0.8);
-            color: white;
+            color: var(--white);
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -233,11 +304,16 @@
             justify-content: center;
             cursor: pointer;
             z-index: 10;
-            transition: background-color 0.3s;
+            transition: var(--transition);
+            opacity: 0;
+        }
+        
+        .carousel-container:hover .carousel-btn {
+            opacity: 1;
         }
         
         .carousel-btn:hover {
-            background-color: #6BAA75;
+            background-color: var(--primary-color);
         }
         
         .carousel-btn.prev {
@@ -253,9 +329,9 @@
             font-size: 28px;
             margin-bottom: 25px;
             padding-bottom: 12px;
-            border-bottom: 3px solid #6BAA75;
+            border-bottom: 3px solid var(--primary-color);
             display: inline-block;
-            color: #333333;
+            color: var(--text-dark);
         }
         
         .categories {
@@ -266,12 +342,12 @@
         }
         
         .category-card {
-            background-color: white;
+            background-color: var(--white);
             border-radius: 10px;
             padding: 25px;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
             border: 1px solid #e0e0e0;
         }
         
@@ -282,13 +358,13 @@
         
         .category-card i {
             font-size: 36px;
-            color: #6BAA75;
+            color: var(--primary-color);
             margin-bottom: 15px;
         }
         
         .category-card h3 {
             font-size: 18px;
-            color: #333333;
+            color: var(--text-dark);
         }
         
         /* ===== ESCRITORES ===== */
@@ -297,7 +373,7 @@
         }
         
         .author-card {
-            background-color: white;
+            background-color: var(--white);
             border-radius: 50%;
             width: 180px;
             height: 180px;
@@ -306,8 +382,8 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
             overflow: hidden;
             position: relative;
         }
@@ -330,10 +406,10 @@
             left: 0;
             right: 0;
             background: rgba(107, 170, 117, 0.9);
-            color: white;
+            color: var(--white);
             padding: 10px;
             transform: translateY(100%);
-            transition: transform 0.3s;
+            transition: var(--transition);
         }
         
         .author-card:hover .author-info {
@@ -353,8 +429,8 @@
         
         /* ===== ASSINATURA MENSAL ===== */
         .subscription-section {
-            background: linear-gradient(135deg, #6BAA75 0%, #5a8f63 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: var(--white);
             padding: 70px 0;
             margin-bottom: 50px;
             text-align: center;
@@ -382,7 +458,7 @@
         .subscription-title {
             font-size: 36px;
             margin-bottom: 20px;
-            color: #E0B24C;
+            color: var(--secondary-color);
         }
         
         .subscription-description {
@@ -412,14 +488,14 @@
         .benefit i {
             font-size: 24px;
             margin-right: 12px;
-            color: #E0B24C;
+            color: var(--secondary-color);
         }
         
         .subscription-price {
             font-size: 42px;
             font-weight: 700;
             margin-bottom: 10px;
-            color: #E0B24C;
+            color: var(--secondary-color);
         }
         
         .price-period {
@@ -440,11 +516,11 @@
         }
         
         .podcast-card {
-            background-color: white;
+            background-color: var(--white);
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
         
         .podcast-card:hover {
@@ -462,7 +538,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s;
+            transition: var(--transition);
         }
         
         .podcast-card:hover .podcast-image img {
@@ -474,7 +550,7 @@
             top: 15px;
             right: 15px;
             background: #ff4757;
-            color: white;
+            color: var(--white);
             padding: 5px 10px;
             border-radius: 20px;
             font-size: 12px;
@@ -489,7 +565,7 @@
             font-weight: 600;
             margin-bottom: 10px;
             font-size: 18px;
-            color: #333333;
+            color: var(--text-dark);
         }
         
         .podcast-description {
@@ -508,8 +584,8 @@
         
         /* ===== INTEGRAÇÃO COM REDES SOCIAIS ===== */
         .social-integration {
-            background-color: #A37C5B;
-            color: white;
+            background-color: var(--accent-color);
+            color: var(--white);
             padding: 50px 0;
             margin-bottom: 50px;
             text-align: center;
@@ -532,7 +608,7 @@
         .social-text h2 {
             font-size: 32px;
             margin-bottom: 20px;
-            color: #E0B24C;
+            color: var(--secondary-color);
         }
         
         .social-links-large {
@@ -547,14 +623,14 @@
             justify-content: center;
             width: 60px;
             height: 60px;
-            background-color: #8a6546;
+            background-color: var(--accent-dark);
             border-radius: 50%;
-            transition: all 0.3s;
+            transition: var(--transition);
             font-size: 24px;
         }
         
         .social-link-large:hover {
-            background-color: #E0B24C;
+            background-color: var(--secondary-color);
             transform: translateY(-5px);
         }
         
@@ -569,7 +645,7 @@
         
         .social-feed h3 {
             margin-bottom: 15px;
-            color: #E0B24C;
+            color: var(--secondary-color);
         }
         
         /* ===== LIVROS EM DESTAQUE ===== */
@@ -584,11 +660,11 @@
         }
         
         .book-card {
-            background-color: white;
+            background-color: var(--white);
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
             position: relative;
             border: 1px solid #e0e0e0;
         }
@@ -623,7 +699,7 @@
             font-weight: 600;
             margin-bottom: 8px;
             font-size: 18px;
-            color: #333333;
+            color: var(--text-dark);
         }
         
         .book-author {
@@ -634,7 +710,7 @@
         
         .book-price {
             font-weight: 700;
-            color: #A37C5B;
+            color: var(--accent-color);
             font-size: 20px;
         }
         
@@ -646,14 +722,14 @@
             right: 0;
             bottom: 0;
             background: rgba(107, 170, 117, 0.95);
-            color: white;
+            color: var(--white);
             padding: 25px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             transform: translateY(10px);
             overflow-y: auto;
         }
@@ -667,7 +743,7 @@
         .summary-title {
             font-size: 20px;
             margin-bottom: 12px;
-            color: #E0B24C;
+            color: var(--secondary-color);
         }
         
         .summary-text {
@@ -679,7 +755,7 @@
         }
         
         .summary-rating {
-            color: #E0B24C;
+            color: var(--secondary-color);
             margin-bottom: 12px;
             font-size: 16px;
         }
@@ -688,13 +764,13 @@
             background-color: rgba(224, 178, 76, 0.9);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
-            color: white;
+            color: var(--white);
             padding: 12px 20px;
             border-radius: 8px;
             font-size: 16px;
             align-self: flex-start;
             margin-top: 15px;
-            transition: all 0.3s;
+            transition: var(--transition);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
@@ -734,19 +810,21 @@
         }
         
         .view-all {
-            color: #6BAA75;
+            color: var(--primary-color);
             font-weight: 600;
-            transition: color 0.3s;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
         }
         
         .view-all:hover {
-            color: #5a8f63;
+            color: var(--primary-dark);
         }
         
         /* ===== COMO FUNCIONA ===== */
         .how-it-works {
-            background-color: #A37C5B;
-            color: white;
+            background-color: var(--accent-color);
+            color: var(--white);
             padding: 50px 0;
             margin-bottom: 50px;
         }
@@ -767,7 +845,7 @@
         
         .step i {
             font-size: 46px;
-            color: #E0B24C;
+            color: var(--secondary-color);
             margin-bottom: 20px;
         }
         
@@ -782,8 +860,8 @@
         
         /* ===== FOOTER ===== */
         footer {
-            background-color: #A37C5B;
-            color: #F8F5F0;
+            background-color: var(--accent-color);
+            color: var(--light-bg);
             padding: 50px 0 25px;
         }
         
@@ -797,7 +875,7 @@
         .footer-column h3 {
             font-size: 20px;
             margin-bottom: 25px;
-            color: #E0B24C;
+            color: var(--secondary-color);
         }
         
         .footer-column ul li {
@@ -805,7 +883,7 @@
         }
         
         .footer-column ul li a:hover {
-            color: #E0B24C;
+            color: var(--secondary-color);
         }
         
         .social-links {
@@ -820,21 +898,155 @@
             justify-content: center;
             width: 40px;
             height: 40px;
-            background-color: #8a6546;
+            background-color: var(--accent-dark);
             border-radius: 50%;
-            transition: background-color 0.3s;
+            transition: var(--transition);
         }
         
         .social-links a:hover {
-            background-color: #E0B24C;
+            background-color: var(--secondary-color);
         }
         
         .copyright {
             text-align: center;
             padding-top: 25px;
-            border-top: 1px solid #8a6546;
+            border-top: 1px solid var(--accent-dark);
             font-size: 16px;
             color: #e0d5c8;
+        }
+        
+        /* ===== MODAL ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #777;
+            transition: var(--transition);
+        }
+        
+        .close-modal:hover {
+            color: var(--text-dark);
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(107, 170, 117, 0.2);
+        }
+        
+        .modal-btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+        
+        .modal-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* ===== NOTIFICAÇÃO ===== */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            padding: 15px 0;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .breadcrumb a {
+            color: var(--primary-color);
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .breadcrumb span {
+            margin: 0 5px;
         }
         
         /* ===== RESPONSIVIDADE ===== */
@@ -900,6 +1112,10 @@
             .social-text {
                 text-align: center;
             }
+            
+            .user-actions {
+                margin-top: 15px;
+            }
         }
     </style>
 </head>
@@ -908,7 +1124,10 @@
     <header>
         <div class="container">
             <div class="header-top">
-                <div class="logo">Seed<span>Book</span></div>
+                <div class="logo">
+                    <i class="fas fa-seedling logo-icon"></i>
+                    Seed<span>Book</span>
+                </div>
                 
                 <div class="search-bar">
                     <input type="text" placeholder="Buscar livros, autores, editoras...">
@@ -917,7 +1136,10 @@
                 
                 <div class="user-actions">
                     <a href="#"><i class="fas fa-user"></i> Minha Conta</a>
-                    <a href="#"><i class="fas fa-shopping-cart"></i> Carrinho</a>
+                    <a href="#" id="cart-link">
+                        <i class="fas fa-shopping-cart"></i> Carrinho
+                        <span class="cart-count">0</span>
+                    </a>
                     <a href="#"><i class="fas fa-heart"></i> Favoritos</a>
                 </div>
             </div>
@@ -932,6 +1154,11 @@
             </nav>
         </div>
     </header>
+
+    <!-- ===== BREADCRUMB ===== -->
+    <div class="container breadcrumb">
+        <a href="#">Home</a> <span>></span> <a href="#">Livros</a> <span>></span> <span>Destaques</span>
+    </div>
 
     <!-- ===== BANNER PRINCIPAL ===== -->
     <section class="banner">
@@ -1366,7 +1593,7 @@
                     <div class="subscription-price">R$ 29,90</div>
                     <div class="price-period">por mês • Cancele quando quiser</div>
                     
-                    <a href="#" class="btn">Assinar Agora</a>
+                    <a href="#" class="btn" id="subscribe-btn">Assinar Agora</a>
                 </div>
             </div>
         </section>
@@ -1702,7 +1929,7 @@
                     <div class="carousel-item">
                         <div class="book-card">
                             <div class="book-image">
-                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Assassinato no Expresso Oriente">
+                                <img src="https://m.media-amazon.com/images/I/81s4Vp0dx6L._UF1000,1000_QL80_.jpg" alt="Assassinato no Expresso Oriente">
                             </div>
                             <div class="book-info">
                                 <h3 class="book-title">Assassinato no Expresso Oriente</h3>
@@ -2015,7 +2242,7 @@
     <!-- ===== COMO FUNCIONA ===== -->
     <section class="how-it-works">
         <div class="container">
-            <h2 class="section-title" style="color: white; border-color: #E0B24C;">Como Funciona</h2>
+            <h2 class="section-title" style="color: white; border-color: var(--secondary-color);">Como Funciona</h2>
             <div class="steps">
                 <div class="step">
                     <i class="fas fa-search"></i>
@@ -2090,7 +2317,50 @@
         </div>
     </footer>
 
+    <!-- ===== MODAL DE ASSINATURA ===== -->
+    <div class="modal" id="subscription-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Assinar Clube do Livro</h2>
+            <form class="modal-form">
+                <div class="form-group">
+                    <label for="name">Nome Completo</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefone</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="preferences">Preferências Literárias</label>
+                    <select id="preferences" multiple>
+                        <option value="romance">Romance</option>
+                        <option value="suspense">Suspense</option>
+                        <option value="fantasia">Fantasia</option>
+                        <option value="ficcao">Ficção Científica</option>
+                        <option value="biografia">Biografia</option>
+                        <option value="autoajuda">Autoajuda</option>
+                    </select>
+                    <small>Segure Ctrl (ou Cmd no Mac) para selecionar múltiplas opções</small>
+                </div>
+                <button type="submit" class="modal-btn">Finalizar Assinatura</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== NOTIFICAÇÃO ===== -->
+    <div class="notification" id="notification">
+        Produto adicionado ao carrinho!
+    </div>
+
     <script>
+        // Variáveis globais
+        let cartCount = 0;
+        
         // Função para controlar o carrossel
         function moveCarousel(carouselId, direction) {
             const carousel = document.getElementById(carouselId);
@@ -2101,6 +2371,33 @@
                 left: scrollAmount,
                 behavior: 'smooth'
             });
+        }
+
+        // Função para mostrar notificação
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Função para atualizar contador do carrinho
+        function updateCartCount() {
+            const cartCountElement = document.querySelector('.cart-count');
+            cartCountElement.textContent = cartCount;
+        }
+
+        // Função para adicionar produto ao carrinho
+        function addToCart(title, price) {
+            cartCount++;
+            updateCartCount();
+            showNotification(`"${title}" adicionado ao carrinho!`);
+            
+            // Aqui você poderia adicionar lógica para armazenar o item no carrinho
+            // Por exemplo, usando localStorage ou enviando para um backend
         }
 
         // Inicialização dos carrosseis
@@ -2118,7 +2415,7 @@
                     if (!e.target.closest('.book-summary')) {
                         const title = this.querySelector('.book-title').textContent;
                         const price = this.querySelector('.book-price').textContent;
-                        alert(`"${title}" adicionado ao carrinho!\nPreço: ${price}`);
+                        addToCart(title, price);
                     }
                 });
             });
@@ -2130,7 +2427,7 @@
                     e.stopPropagation();
                     const title = this.closest('.book-card').querySelector('.book-title').textContent;
                     const price = this.closest('.book-card').querySelector('.book-price').textContent;
-                    alert(`"${title}" adicionado ao carrinho!\nPreço: ${price}`);
+                    addToCart(title, price);
                 });
             });
             
@@ -2139,9 +2436,9 @@
             searchButton.addEventListener('click', function() {
                 const searchTerm = document.querySelector('.search-bar input').value;
                 if (searchTerm.trim() !== '') {
-                    alert(`Buscando por: "${searchTerm}"`);
+                    showNotification(`Buscando por: "${searchTerm}"`);
                 } else {
-                    alert('Digite algo para buscar');
+                    showNotification('Digite algo para buscar');
                 }
             });
             
@@ -2152,11 +2449,34 @@
                 }
             });
             
-            // Inscrição no clube do livro
-            const subscribeButton = document.querySelector('.subscription-section .btn');
+            // Modal de assinatura
+            const subscribeButton = document.getElementById('subscribe-btn');
+            const modal = document.getElementById('subscription-modal');
+            const closeModal = document.querySelector('.close-modal');
+            
             subscribeButton.addEventListener('click', function(e) {
                 e.preventDefault();
-                alert('Inscrição no Clube do Livro realizada com sucesso! Em breve você receberá seu primeiro livro surpresa.');
+                modal.style.display = 'flex';
+            });
+            
+            closeModal.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            
+            // Fechar modal ao clicar fora
+            window.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+            
+            // Envio do formulário de assinatura
+            const subscriptionForm = document.querySelector('.modal-form');
+            subscriptionForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                showNotification('Inscrição realizada com sucesso! Em breve você receberá seu primeiro livro surpresa.');
+                modal.style.display = 'none';
+                subscriptionForm.reset();
             });
             
             // Auto-scroll para carrosseis
@@ -2172,6 +2492,9 @@
             carouselIds.forEach(id => {
                 startAutoScroll(id);
             });
+            
+            // Inicializar contador do carrinho
+            updateCartCount();
         });
 
         // Função para iniciar auto-scroll
@@ -2205,5 +2528,4 @@
         }
     </script>
 </body>
-
 </html>
